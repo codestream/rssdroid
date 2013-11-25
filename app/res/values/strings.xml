@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">app</string>
+	<string name="hint_add_new_feed">Add new feed</string>
+	<string name="text_cancel">Cancel</string>
+	<string name="text_add_dialog_title">Add feed</string>
+	<string name="text_toast_empty_feed_url">Feed url can\'t be empty</string>
+	<string name="text_toast_empty_feed_description">Feed description can\'t be empty</string>
+</resources>
