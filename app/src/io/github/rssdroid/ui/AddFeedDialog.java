@@ -1,5 +1,6 @@
 package io.github.rssdroid.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.text.TextUtils;
@@ -11,8 +12,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import io.github.rssdroid.R;
+import io.github.rssdroid.database.FeedDatabaseHelperAdapter;
 
 public class AddFeedDialog extends DialogFragment {
+    private FeedDatabaseHelperAdapter mFeedDatabaseHelperAdapter;
 
     public static AddFeedDialog newInstance(){
         return new AddFeedDialog();
@@ -46,17 +49,24 @@ public class AddFeedDialog extends DialogFragment {
             @Override
             public void onClick(View v) {
                 if(TextUtils.isEmpty(holder.feedUrlField.getText())){
-                    Toast toast = Toast.makeText(getActivity(), getString(R.string.text_toast_empty_feed_url),
+                    Toast toast = Toast.makeText(getActivity(),
+                            getString(R.string.text_toast_empty_feed_url),
                             Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
                     toast.show();
                 } else if(TextUtils.isEmpty(holder.feedDescriptionField.getText())){
-                    Toast feedDescriptionToast = Toast.makeText(getActivity(), getString(R.string.text_toast_empty_feed_description),
+                    Toast feedDescriptionToast = Toast.makeText(getActivity(),
+                            getString(R.string.text_toast_empty_feed_description),
                             Toast.LENGTH_LONG);
                     feedDescriptionToast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
                     feedDescriptionToast.show();
                 } else {
-                    //insert feed url and description into database
+                    mFeedDatabaseHelperAdapter = new FeedDatabaseHelperAdapter(getActivity());
+                    mFeedDatabaseHelperAdapter.addFeed(holder.feedUrlField.getText().toString(),
+                            holder.feedDescriptionField.getText().toString());
+                    dismiss();
+                    Intent intent = new Intent(getActivity(), FeedActivity.class);
+                    startActivity(intent);
                 }
             }
         });

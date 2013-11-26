@@ -19,12 +19,15 @@ public class FeedDatabaseHelperAdapter {
     }
 
     public Cursor findFeedUrls(){
-        mDatabase = feedDatabaseHelper.getReadableDatabase();
-        mCursor = mDatabase.rawQuery("SELECT FEED_URL TEXT, FEED_DESCRIPTION FROM feed_url", null);
+        mDatabase = this.feedDatabaseHelper.getReadableDatabase();
+        mCursor = mDatabase.rawQuery("SELECT FEED_URL, FEED_DESCRIPTION FROM feed_url", null);
         return mCursor;
     }
 
     public void addFeed(String feedUrl, String feedDescription){
-        mDatabase.execSQL("INSERT INTO " + FEED_URL_TABLE + "(FEED_URL TEXT, FEED_DESCRIPTION) VALUES (" + feedUrl + "," + feedDescription +")");
+        mDatabase = this.feedDatabaseHelper.getReadableDatabase();
+        String insertQuery = "INSERT INTO " + FEED_URL_TABLE + "(FEED_URL_ID, FEED_URL, FEED_DESCRIPTION) " +
+                "VALUES ('" + 1 + "','" + feedUrl + "', '" + feedDescription + "')";
+        mDatabase.execSQL(insertQuery);
     }
 }
