@@ -1,5 +1,7 @@
 package io.github.rssdroid;
 
+import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -8,15 +10,26 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import io.github.rssdroid.database.FeedDatabaseHelperAdapter;
 import io.github.rssdroid.ui.AddFeedDialog;
+import io.github.rssdroid.ui.FeedActivity;
 
 public class HomeActivity extends SherlockFragmentActivity {
+    private FeedDatabaseHelperAdapter mFeedDatabaseHelperAdapter;
+    private Cursor mCursor;
+    private Intent mIntent;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         getSupportActionBar().show();
+        mFeedDatabaseHelperAdapter = new FeedDatabaseHelperAdapter(this);
+        mCursor = mFeedDatabaseHelperAdapter.findFeedUrls();
+        if(mCursor.getCount() != 0){
+            mIntent = new Intent(HomeActivity.this, FeedActivity.class);
+            startActivity(mIntent);
+        }
     }
 
     @Override

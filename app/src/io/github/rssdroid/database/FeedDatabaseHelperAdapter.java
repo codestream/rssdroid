@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.widget.Toast;
 
 public class FeedDatabaseHelperAdapter {
 
@@ -36,9 +35,16 @@ public class FeedDatabaseHelperAdapter {
         if(mDatabase.isOpen()){
             mDatabase.close();
         }
-        /*mDatabase = this.feedDatabaseHelper.getWritableDatabase();
-        String insertQuery = "INSERT INTO " + FEED_URL_TABLE + "(FEED_URL, FEED_DESCRIPTION) " +
-                "VALUES ('" + feedUrl + "', '" + feedDescription + "')";
-        mDatabase.execSQL(insertQuery);*/
+    }
+
+    public void addFeedContent(String feedUrl, String feedContent){
+        mDatabase = feedDatabaseHelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("FEED_ID", feedUrl);
+        contentValues.put("FEED_CONTENT", feedContent);
+        mDatabase.insert(FEED_TABLE, null, contentValues);
+        if(mDatabase.isOpen()){
+            mDatabase.close();
+        }
     }
 }
