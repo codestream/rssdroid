@@ -1,8 +1,10 @@
 package io.github.rssdroid.database;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.Toast;
 
 public class FeedDatabaseHelperAdapter {
 
@@ -20,14 +22,23 @@ public class FeedDatabaseHelperAdapter {
 
     public Cursor findFeedUrls(){
         mDatabase = this.feedDatabaseHelper.getReadableDatabase();
-        mCursor = mDatabase.rawQuery("SELECT FEED_URL, FEED_DESCRIPTION FROM feed_url", null);
+        String query = "SELECT * FROM feed_url";
+        mCursor = mDatabase.rawQuery(query, null);
         return mCursor;
     }
 
     public void addFeed(String feedUrl, String feedDescription){
-        mDatabase = this.feedDatabaseHelper.getReadableDatabase();
-        String insertQuery = "INSERT INTO " + FEED_URL_TABLE + "(FEED_URL_ID, FEED_URL, FEED_DESCRIPTION) " +
-                "VALUES ('" + 1 + "','" + feedUrl + "', '" + feedDescription + "')";
-        mDatabase.execSQL(insertQuery);
+        mDatabase = feedDatabaseHelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("FEED_URL", feedUrl);
+        contentValues.put("FEED_DESCRIPTION", feedDescription);
+        mDatabase.insert(FEED_URL_TABLE, null, contentValues);
+        if(mDatabase.isOpen()){
+            mDatabase.close();
+        }
+        /*mDatabase = this.feedDatabaseHelper.getWritableDatabase();
+        String insertQuery = "INSERT INTO " + FEED_URL_TABLE + "(FEED_URL, FEED_DESCRIPTION) " +
+                "VALUES ('" + feedUrl + "', '" + feedDescription + "')";
+        mDatabase.execSQL(insertQuery);*/
     }
 }

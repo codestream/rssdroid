@@ -20,6 +20,7 @@ public class FeedContentFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_feed_content, container, false);
         ViewHolder viewHolder = new ViewHolder();
         viewHolder.mTitle = (TextView) view.findViewById(R.id.text_title);
+        viewHolder.mTitle.setText("Test text");
         return view;
     }
 

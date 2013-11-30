@@ -6,4 +6,5 @@
 	<string name="text_add_dialog_title">Add feed</string>
 	<string name="text_toast_empty_feed_url">Feed url can\'t be empty</string>
 	<string name="text_toast_empty_feed_description">Feed description can\'t be empty</string>
+	<string name="text_list_fragment_tag">FEED_LIST</string>
 </resources>

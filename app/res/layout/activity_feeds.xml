@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-			  android:orientation="vertical"
-			  android:layout_width="fill_parent"
-			  android:layout_height="fill_parent">
-	 <RelativeLayout
-		 android:layout_width="fill_parent"
-		 android:layout_height="fill_parent">
-		 <fragment class="io.github.rssdroid.ui.FeedListFragment"
-				   android:layout_width="88dp"
-				   android:layout_alignParentLeft="true"
-				   android:layout_height="fill_parent" android:id="@+id/fragment_list">
-		 </fragment>
-		 <fragment class="io.github.rssdroid.ui.FeedContentFragment"
-				   android:layout_width="92dp"
-				   android:layout_alignParentRight="true"
-				   android:layout_height="fill_parent"
-				   android:layout_toRightOf="@+id/fragment_content"/>
-	 </RelativeLayout>
+<LinearLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:orientation="vertical"
+		android:id="@+id/fragments_container">
+	<fragment class="io.github.rssdroid.ui.FeedListFragment"
+			  android:layout_width="150dp"
+			  android:layout_height="fill_parent"
+			  android:layout_gravity="left"
+			  android:id="@+id/fragment_list"/>
+	<fragment class="io.github.rssdroid.ui.FeedContentFragment"
+			  android:id="@+id/fragment_content"
+			  android:layout_width="wrap_content"
+			  android:layout_gravity="right"
+			  android:layout_height="fill_parent"/>
 </LinearLayout>
