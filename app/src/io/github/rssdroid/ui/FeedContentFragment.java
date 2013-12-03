@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ListView;
 import io.github.rssdroid.R;
 
 public class FeedContentFragment extends Fragment {
@@ -19,12 +19,11 @@ public class FeedContentFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_feed_content, container, false);
         ViewHolder viewHolder = new ViewHolder();
-        viewHolder.mTitle = (TextView) view.findViewById(R.id.text_title);
-        viewHolder.mTitle.setText("Test text");
+        viewHolder.mListView = (ListView) view.findViewById(R.id.list_feed_content);
         return view;
     }
 
     private class ViewHolder {
-       TextView mTitle;
+        ListView mListView;
     }
 }
