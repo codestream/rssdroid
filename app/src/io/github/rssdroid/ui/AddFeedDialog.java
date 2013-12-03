@@ -17,7 +17,6 @@ import io.github.rssdroid.database.FeedDatabaseHelperAdapter;
 
 public class AddFeedDialog extends DialogFragment {
     private FeedDatabaseHelperAdapter mFeedDatabaseHelperAdapter;
-    private static final String REGEX = "\\b(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
 
     public static AddFeedDialog newInstance(){
         return new AddFeedDialog();
