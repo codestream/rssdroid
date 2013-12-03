@@ -5,7 +5,8 @@
 			  android:layout_width="fill_parent"
 			  android:layout_height="fill_parent">
 	  <ListView
-		  android:id="@android:id/list"
+		  android:id="@+id/view_list_feeds"
 		  android:layout_height="fill_parent"
-		  android:layout_width="fill_parent"/>
+		  android:layout_width="fill_parent"
+	      android:focusable="false"/>
 </LinearLayout>

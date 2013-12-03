@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import io.github.rssdroid.database.FeedDatabaseHelperAdapter;
 
 public class AddFeedDialog extends DialogFragment {
     private FeedDatabaseHelperAdapter mFeedDatabaseHelperAdapter;
+    private static final String REGEX = "\\b(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
 
     public static AddFeedDialog newInstance(){
         return new AddFeedDialog();
@@ -60,6 +62,11 @@ public class AddFeedDialog extends DialogFragment {
                             Toast.LENGTH_LONG);
                     feedDescriptionToast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
                     feedDescriptionToast.show();
+                } else if(!Patterns.WEB_URL.matcher(holder.feedUrlField.getText().toString()).matches()) {
+                    Toast malformedUrlToast = Toast.makeText(getActivity(), getString(R.string.toast_malformed_url),
+                            Toast.LENGTH_LONG);
+                    malformedUrlToast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                    malformedUrlToast.show();
                 } else {
                     mFeedDatabaseHelperAdapter = new FeedDatabaseHelperAdapter(getActivity());
                     mFeedDatabaseHelperAdapter.addFeed(holder.feedUrlField.getText().toString(),

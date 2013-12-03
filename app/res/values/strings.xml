@@ -8,4 +8,6 @@
 	<string name="text_toast_empty_feed_description">Feed description can\'t be empty</string>
 	<string name="text_list_fragment_tag">FEED_LIST</string>
 	<string name="text_not_implemented_yet">Not implemented yet</string>
+	<string name="bundle_key_url_string">URL_STRING</string>
+	<string name="toast_malformed_url">Invalid url format</string>
 </resources>

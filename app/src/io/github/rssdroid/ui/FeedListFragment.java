@@ -1,27 +1,28 @@
 package io.github.rssdroid.ui;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
-import com.actionbarsherlock.app.SherlockListFragment;
+import android.widget.TextView;
+import android.widget.Toast;
 import io.github.rssdroid.R;
 import io.github.rssdroid.database.FeedDatabaseHelperAdapter;
 import io.github.rssdroid.domain.FeedUrl;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
+import java.util.Map;
 
-public class FeedListFragment extends ListFragment {
+public class FeedListFragment extends Fragment {
     private ListView mListView;
     private FeedDatabaseHelperAdapter feedDatabaseHelperAdapter;
 
@@ -34,7 +35,15 @@ public class FeedListFragment extends ListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_feed_lists,  container, false);
-        mListView = (ListView) view.findViewById(android.R.id.list);
+        mListView = (ListView) view.findViewById(R.id.view_list_feeds);
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String urlString = ((TextView) view.findViewById(R.id.text_feed_url_item)).getText().toString();
+                Bundle bundle = new Bundle();
+                bundle.putString(getString(R.string.bundle_key_url_string), urlString);
+            }
+        });
         return view;
     }
 
