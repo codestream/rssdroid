@@ -1,7 +1,9 @@
 package io.github.rssdroid.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.DialogFragment;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -72,6 +74,11 @@ public class AddFeedDialog extends DialogFragment {
                             holder.feedDescriptionField.getText().toString());
                     dismiss();
                     Intent intent = new Intent(getActivity(), FeedActivity.class);
+                    //убрать костыли
+                    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putString(getString(R.string.text_bundle_feed_url_dialog), holder.feedUrlField.getText().toString());
+                    editor.commit();
                     startActivity(intent);
                 }
             }

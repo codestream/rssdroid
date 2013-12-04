@@ -2,6 +2,7 @@ package io.github.rssdroid.ui;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import io.github.rssdroid.R;
 import io.github.rssdroid.database.FeedDatabaseHelperAdapter;
 import io.github.rssdroid.domain.FeedUrl;
@@ -35,9 +37,7 @@ public class FeedListFragment extends Fragment {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String urlString = ((TextView) view.findViewById(R.id.text_feed_url_item)).getText().toString();
-                Bundle bundle = new Bundle();
-                bundle.putString(getString(R.string.bundle_key_url_string), urlString);
+                Toast.makeText(getActivity(), getString(R.string.text_not_implemented_yet), Toast.LENGTH_LONG).show();
             }
         });
         return view;

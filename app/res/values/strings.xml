@@ -10,4 +10,5 @@
 	<string name="text_not_implemented_yet">Not implemented yet</string>
 	<string name="bundle_key_url_string">URL_STRING</string>
 	<string name="toast_malformed_url">Invalid url format</string>
+	<string name="text_bundle_feed_url_dialog">FEED_URL_FROM_DIALOG</string>
 </resources>
