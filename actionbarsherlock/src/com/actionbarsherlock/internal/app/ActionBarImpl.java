@@ -18,7 +18,6 @@ package com.actionbarsherlock.internal.app;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -55,7 +54,6 @@ import com.actionbarsherlock.view.ActionMode;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-
 import static com.actionbarsherlock.internal.ResourcesCompat.getResources_getBoolean;
 
 /**
@@ -142,7 +140,7 @@ public class ActionBarImpl extends ActionBar {
 
         //window.hasFeature() workaround for pre-3.0
         if ((features & (1 << Window.FEATURE_ACTION_BAR_OVERLAY)) == 0) {
-            mContentView = (NineFrameLayout) decor.findViewById(android.R.id.content);
+            mContentView = (NineFrameLayout)decor.findViewById(android.R.id.content);
         }
     }
 
@@ -320,15 +318,15 @@ public class ActionBarImpl extends ActionBar {
 
     public void setSelectedNavigationItem(int position) {
         switch (mActionView.getNavigationMode()) {
-            case NAVIGATION_MODE_TABS:
-                selectTab(mTabs.get(position));
-                break;
-            case NAVIGATION_MODE_LIST:
-                mActionView.setDropdownSelectedPosition(position);
-                break;
-            default:
-                throw new IllegalStateException(
-                        "setSelectedNavigationIndex not valid for current navigation mode");
+        case NAVIGATION_MODE_TABS:
+            selectTab(mTabs.get(position));
+            break;
+        case NAVIGATION_MODE_LIST:
+            mActionView.setDropdownSelectedPosition(position);
+            break;
+        default:
+            throw new IllegalStateException(
+                    "setSelectedNavigationItem not valid for current navigation mode");
         }
     }
 
@@ -425,7 +423,7 @@ public class ActionBarImpl extends ActionBar {
 
     private void configureTab(Tab tab, int position) {
         final TabImpl tabi = (TabImpl) tab;
-        final ActionBar.TabListener callback = tabi.getCallback();
+        final TabListener callback = tabi.getCallback();
 
         if (callback == null) {
             throw new IllegalStateException("Action Bar Tab must have a Callback");
@@ -514,7 +512,7 @@ public class ActionBarImpl extends ActionBar {
 
         FragmentTransaction trans = null;
         if (mActivity instanceof FragmentActivity) {
-            trans = ((FragmentActivity) mActivity).getSupportFragmentManager().beginTransaction()
+            trans = ((FragmentActivity)mActivity).getSupportFragmentManager().beginTransaction()
                     .disallowAddToBackStack();
         }
 
@@ -661,11 +659,11 @@ public class ActionBarImpl extends ActionBar {
      * @hide
      */
     public class ActionModeImpl extends ActionMode implements MenuBuilder.Callback {
-        private ActionMode.Callback mCallback;
+        private Callback mCallback;
         private MenuBuilder mMenu;
         private WeakReference<View> mCustomView;
 
-        public ActionModeImpl(ActionMode.Callback callback) {
+        public ActionModeImpl(Callback callback) {
             mCallback = callback;
             mMenu = new MenuBuilder(getThemedContext())
                     .setDefaultShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
@@ -812,8 +810,8 @@ public class ActionBarImpl extends ActionBar {
     /**
      * @hide
      */
-    public class TabImpl extends ActionBar.Tab {
-        private ActionBar.TabListener mCallback;
+    public class TabImpl extends Tab {
+        private TabListener mCallback;
         private Object mTag;
         private Drawable mIcon;
         private CharSequence mText;
@@ -832,12 +830,12 @@ public class ActionBarImpl extends ActionBar {
             return this;
         }
 
-        public ActionBar.TabListener getCallback() {
+        public TabListener getCallback() {
             return mCallback;
         }
 
         @Override
-        public Tab setTabListener(ActionBar.TabListener callback) {
+        public Tab setTabListener(TabListener callback) {
             mCallback = callback;
             return this;
         }

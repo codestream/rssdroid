@@ -29,11 +29,12 @@ public abstract class ActionMode {
 
     /**
      * Set a tag object associated with this ActionMode.
-     * <p/>
+     *
      * <p>Like the tag available to views, this allows applications to associate arbitrary
      * data with an ActionMode for later reference.
      *
      * @param tag Tag to associate with this ActionMode
+     *
      * @see #getTag()
      */
     public void setTag(Object tag) {
@@ -42,11 +43,12 @@ public abstract class ActionMode {
 
     /**
      * Retrieve the tag object associated with this ActionMode.
-     * <p/>
+     *
      * <p>Like the tag available to views, this allows applications to associate arbitrary
      * data with an ActionMode for later reference.
      *
      * @return Tag associated with this ActionMode
+     *
      * @see #setTag(Object)
      */
     public Object getTag() {
@@ -58,8 +60,9 @@ public abstract class ActionMode {
      * a custom view has been set.
      *
      * @param title Title string to set
+     *
      * @see #setTitle(int)
-     * @see #setCustomView(View)
+     * @see #setCustomView(android.view.View)
      */
     public abstract void setTitle(CharSequence title);
 
@@ -68,8 +71,9 @@ public abstract class ActionMode {
      * a custom view has been set.
      *
      * @param resId Resource ID of a string to set as the title
+     *
      * @see #setTitle(CharSequence)
-     * @see #setCustomView(View)
+     * @see #setCustomView(android.view.View)
      */
     public abstract void setTitle(int resId);
 
@@ -78,8 +82,9 @@ public abstract class ActionMode {
      * a custom view has been set.
      *
      * @param subtitle Subtitle string to set
+     *
      * @see #setSubtitle(int)
-     * @see #setCustomView(View)
+     * @see #setCustomView(android.view.View)
      */
     public abstract void setSubtitle(CharSequence subtitle);
 
@@ -88,8 +93,9 @@ public abstract class ActionMode {
      * a custom view has been set.
      *
      * @param resId Resource ID of a string to set as the subtitle
+     *
      * @see #setSubtitle(CharSequence)
-     * @see #setCustomView(View)
+     * @see #setCustomView(android.view.View)
      */
     public abstract void setSubtitle(int resId);
 
@@ -98,6 +104,7 @@ public abstract class ActionMode {
      * the title and subtitle. Useful for things like search boxes.
      *
      * @param view Custom view to use in place of the title/subtitle.
+     *
      * @see #setTitle(CharSequence)
      * @see #setSubtitle(CharSequence)
      */
@@ -105,49 +112,45 @@ public abstract class ActionMode {
 
     /**
      * Invalidate the action mode and refresh menu content. The mode's
-     * {@link ActionMode.Callback} will have its
-     * {@link Callback#onPrepareActionMode(ActionMode, Menu)} method called.
+     * {@link com.actionbarsherlock.view.ActionMode.Callback} will have its
+     * {@link com.actionbarsherlock.view.ActionMode.Callback#onPrepareActionMode(com.actionbarsherlock.view.ActionMode, com.actionbarsherlock.view.Menu)} method called.
      * If it returns true the menu will be scanned for updated content and any relevant changes
      * will be reflected to the user.
      */
     public abstract void invalidate();
 
     /**
-     * Finish and close this action mode. The action mode's {@link ActionMode.Callback} will
-     * have its {@link Callback#onDestroyActionMode(ActionMode)} method called.
+     * Finish and close this action mode. The action mode's {@link com.actionbarsherlock.view.ActionMode.Callback} will
+     * have its {@link com.actionbarsherlock.view.ActionMode.Callback#onDestroyActionMode(com.actionbarsherlock.view.ActionMode)} method called.
      */
     public abstract void finish();
 
     /**
      * Returns the menu of actions that this action mode presents.
-     *
      * @return The action mode's menu.
      */
     public abstract Menu getMenu();
 
     /**
      * Returns the current title of this action mode.
-     *
      * @return Title text
      */
     public abstract CharSequence getTitle();
 
     /**
      * Returns the current subtitle of this action mode.
-     *
      * @return Subtitle text
      */
     public abstract CharSequence getSubtitle();
 
     /**
      * Returns the current custom view for this action mode.
-     *
      * @return The current custom view
      */
     public abstract View getCustomView();
 
     /**
-     * Returns a {@link MenuInflater} with the ActionMode's context.
+     * Returns a {@link com.actionbarsherlock.view.MenuInflater} with the ActionMode's context.
      */
     public abstract MenuInflater getMenuInflater();
 
@@ -165,18 +168,18 @@ public abstract class ActionMode {
 
     /**
      * Callback interface for action modes. Supplied to
-     * {@link View#startActionMode(Callback)}, a Callback
+     * {@link android.view.View#startActionMode(com.actionbarsherlock.view.ActionMode.Callback)}, a Callback
      * configures and handles events raised by a user's interaction with an action mode.
-     * <p/>
+     *
      * <p>An action mode's lifecycle is as follows:
      * <ul>
-     * <li>{@link Callback#onCreateActionMode(ActionMode, Menu)} once on initial
+     * <li>{@link com.actionbarsherlock.view.ActionMode.Callback#onCreateActionMode(com.actionbarsherlock.view.ActionMode, com.actionbarsherlock.view.Menu)} once on initial
      * creation</li>
-     * <li>{@link Callback#onPrepareActionMode(ActionMode, Menu)} after creation
-     * and any time the {@link ActionMode} is invalidated</li>
-     * <li>{@link Callback#onActionItemClicked(ActionMode, MenuItem)} any time a
+     * <li>{@link com.actionbarsherlock.view.ActionMode.Callback#onPrepareActionMode(com.actionbarsherlock.view.ActionMode, com.actionbarsherlock.view.Menu)} after creation
+     * and any time the {@link com.actionbarsherlock.view.ActionMode} is invalidated</li>
+     * <li>{@link com.actionbarsherlock.view.ActionMode.Callback#onActionItemClicked(com.actionbarsherlock.view.ActionMode, com.actionbarsherlock.view.MenuItem)} any time a
      * contextual action button is clicked</li>
-     * <li>{@link Callback#onDestroyActionMode(ActionMode)} when the action mode
+     * <li>{@link com.actionbarsherlock.view.ActionMode.Callback#onDestroyActionMode(com.actionbarsherlock.view.ActionMode)} when the action mode
      * is closed</li>
      * </ul>
      */
@@ -188,7 +191,7 @@ public abstract class ActionMode {
          * @param mode ActionMode being created
          * @param menu Menu used to populate action buttons
          * @return true if the action mode should be created, false if entering this
-         *         mode should be aborted.
+         *              mode should be aborted.
          */
         public boolean onCreateActionMode(ActionMode mode, Menu menu);
 
@@ -207,7 +210,7 @@ public abstract class ActionMode {
          * @param mode The current ActionMode
          * @param item The item that was clicked
          * @return true if this callback handled the event, false if the standard MenuItem
-         *         invocation should continue.
+         *          invocation should continue.
          */
         public boolean onActionItemClicked(ActionMode mode, MenuItem item);
 

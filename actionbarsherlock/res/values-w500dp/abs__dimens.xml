@@ -18,5 +18,5 @@
 */
 -->
 <resources>
-	<integer name="abs__max_action_buttons">4</integer>
+    <integer name="abs__max_action_buttons">4</integer>
 </resources>

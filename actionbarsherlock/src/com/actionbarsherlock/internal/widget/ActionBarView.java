@@ -78,10 +78,10 @@ public class ActionBarView extends AbsActionBarView {
      */
     private static final int DISPLAY_RELAYOUT_MASK =
             ActionBar.DISPLAY_SHOW_HOME |
-                    ActionBar.DISPLAY_USE_LOGO |
-                    ActionBar.DISPLAY_HOME_AS_UP |
-                    ActionBar.DISPLAY_SHOW_CUSTOM |
-                    ActionBar.DISPLAY_SHOW_TITLE;
+            ActionBar.DISPLAY_USE_LOGO |
+            ActionBar.DISPLAY_HOME_AS_UP |
+            ActionBar.DISPLAY_SHOW_CUSTOM |
+            ActionBar.DISPLAY_SHOW_TITLE;
 
     private static final int DEFAULT_CUSTOM_GRAVITY = Gravity.LEFT | Gravity.CENTER_VERTICAL;
 
@@ -138,16 +138,15 @@ public class ActionBarView extends AbsActionBarView {
     @SuppressWarnings("rawtypes")
     private final IcsAdapterView.OnItemSelectedListener mNavItemSelectedListener =
             new IcsAdapterView.OnItemSelectedListener() {
-                public void onItemSelected(IcsAdapterView parent, View view, int position, long id) {
-                    if (mCallback != null) {
-                        mCallback.onNavigationItemSelected(position, id);
-                    }
-                }
-
-                public void onNothingSelected(IcsAdapterView parent) {
-                    // Do nothing
-                }
-            };
+        public void onItemSelected(IcsAdapterView parent, View view, int position, long id) {
+            if (mCallback != null) {
+                mCallback.onNavigationItemSelected(position, id);
+            }
+        }
+        public void onNothingSelected(IcsAdapterView parent) {
+            // Do nothing
+        }
+    };
 
     private final OnClickListener mExpandedActionViewUpListener = new OnClickListener() {
         @Override
@@ -281,7 +280,7 @@ public class ActionBarView extends AbsActionBarView {
         }
 
         if (mTabScrollView != null && mIncludeTabs) {
-            ViewGroup.LayoutParams lp = mTabScrollView.getLayoutParams();
+            LayoutParams lp = mTabScrollView.getLayoutParams();
             if (lp != null) {
                 lp.width = LayoutParams.WRAP_CONTENT;
                 lp.height = LayoutParams.MATCH_PARENT;
@@ -292,7 +291,6 @@ public class ActionBarView extends AbsActionBarView {
 
     /**
      * Set the window callback used to invoke menu items; used for dispatching home button presses.
-     *
      * @param cb Window callback to dispatch to
      */
     public void setWindowCallback(Window.Callback cb) {
@@ -366,7 +364,7 @@ public class ActionBarView extends AbsActionBarView {
         mIncludeTabs = tabs != null;
         if (mIncludeTabs && mNavigationMode == ActionBar.NAVIGATION_MODE_TABS) {
             addView(mTabScrollView);
-            ViewGroup.LayoutParams lp = mTabScrollView.getLayoutParams();
+            LayoutParams lp = mTabScrollView.getLayoutParams();
             lp.width = LayoutParams.WRAP_CONTENT;
             lp.height = LayoutParams.MATCH_PARENT;
             tabs.setAllowCollapse(true);
@@ -406,7 +404,7 @@ public class ActionBarView extends AbsActionBarView {
         if (!mSplitActionBar) {
             mActionMenuPresenter.setExpandedActionViewsExclusive(
                     getResources_getBoolean(getContext(),
-                            R.bool.abs__action_bar_expanded_action_views_exclusive));
+                    R.bool.abs__action_bar_expanded_action_views_exclusive));
             configPresenters(builder);
             menuView = (ActionMenuView) mActionMenuPresenter.getMenuView(this);
             final ViewGroup oldParent = (ViewGroup) menuView.getParent();
@@ -482,8 +480,8 @@ public class ActionBarView extends AbsActionBarView {
 
     /**
      * Set the action bar title. This will always replace or override window titles.
-     *
      * @param title Title to set
+     *
      * @see #setWindowTitle(CharSequence)
      */
     public void setTitle(CharSequence title) {
@@ -493,8 +491,8 @@ public class ActionBarView extends AbsActionBarView {
 
     /**
      * Set the window title. A window title will always be replaced or overridden by a user title.
-     *
      * @param title Title to set
+     *
      * @see #setTitle(CharSequence)
      */
     public void setWindowTitle(CharSequence title) {
@@ -642,40 +640,40 @@ public class ActionBarView extends AbsActionBarView {
         final int oldMode = mNavigationMode;
         if (mode != oldMode) {
             switch (oldMode) {
-                case ActionBar.NAVIGATION_MODE_LIST:
-                    if (mListNavLayout != null) {
-                        removeView(mListNavLayout);
-                    }
-                    break;
-                case ActionBar.NAVIGATION_MODE_TABS:
-                    if (mTabScrollView != null && mIncludeTabs) {
-                        removeView(mTabScrollView);
-                    }
+            case ActionBar.NAVIGATION_MODE_LIST:
+                if (mListNavLayout != null) {
+                    removeView(mListNavLayout);
+                }
+                break;
+            case ActionBar.NAVIGATION_MODE_TABS:
+                if (mTabScrollView != null && mIncludeTabs) {
+                    removeView(mTabScrollView);
+                }
             }
 
             switch (mode) {
-                case ActionBar.NAVIGATION_MODE_LIST:
-                    if (mSpinner == null) {
-                        mSpinner = new IcsSpinner(mContext, null,
-                                R.attr.actionDropDownStyle);
-                        mListNavLayout = (IcsLinearLayout) LayoutInflater.from(mContext)
-                                .inflate(R.layout.abs__action_bar_tab_bar_view, null);
-                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                                LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
-                        params.gravity = Gravity.CENTER;
-                        mListNavLayout.addView(mSpinner, params);
-                    }
-                    if (mSpinner.getAdapter() != mSpinnerAdapter) {
-                        mSpinner.setAdapter(mSpinnerAdapter);
-                    }
-                    mSpinner.setOnItemSelectedListener(mNavItemSelectedListener);
-                    addView(mListNavLayout);
-                    break;
-                case ActionBar.NAVIGATION_MODE_TABS:
-                    if (mTabScrollView != null && mIncludeTabs) {
-                        addView(mTabScrollView);
-                    }
-                    break;
+            case ActionBar.NAVIGATION_MODE_LIST:
+                if (mSpinner == null) {
+                    mSpinner = new IcsSpinner(mContext, null,
+                            R.attr.actionDropDownStyle);
+                    mListNavLayout = (IcsLinearLayout) LayoutInflater.from(mContext)
+                            .inflate(R.layout.abs__action_bar_tab_bar_view, null);
+                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                            LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
+                    params.gravity = Gravity.CENTER;
+                    mListNavLayout.addView(mSpinner, params);
+                }
+                if (mSpinner.getAdapter() != mSpinnerAdapter) {
+                    mSpinner.setAdapter(mSpinnerAdapter);
+                }
+                mSpinner.setOnItemSelectedListener(mNavItemSelectedListener);
+                addView(mListNavLayout);
+                break;
+            case ActionBar.NAVIGATION_MODE_TABS:
+                if (mTabScrollView != null && mIncludeTabs) {
+                    addView(mTabScrollView);
+                }
+                break;
             }
             mNavigationMode = mode;
             requestLayout();
@@ -714,7 +712,7 @@ public class ActionBarView extends AbsActionBarView {
     }
 
     @Override
-    protected ViewGroup.LayoutParams generateDefaultLayoutParams() {
+    protected LayoutParams generateDefaultLayoutParams() {
         // Used by custom nav views if they don't supply layout params. Everything else
         // added to an ActionBarView should have them already.
         return new ActionBar.LayoutParams(DEFAULT_CUSTOM_GRAVITY);
@@ -841,7 +839,7 @@ public class ActionBarView extends AbsActionBarView {
         HomeView homeLayout = mExpandedActionView != null ? mExpandedHomeLayout : mHomeLayout;
 
         if (homeLayout.getVisibility() != GONE) {
-            final ViewGroup.LayoutParams lp = homeLayout.getLayoutParams();
+            final LayoutParams lp = homeLayout.getLayoutParams();
             int homeWidthSpec;
             if (lp.width < 0) {
                 homeWidthSpec = MeasureSpec.makeMeasureSpec(availableWidth, MeasureSpec.AT_MOST);
@@ -912,7 +910,7 @@ public class ActionBarView extends AbsActionBarView {
         }
 
         if (customView != null) {
-            final ViewGroup.LayoutParams lp = generateLayoutParams(customView.getLayoutParams());
+            final LayoutParams lp = generateLayoutParams(customView.getLayoutParams());
             final ActionBar.LayoutParams ablp = lp instanceof ActionBar.LayoutParams ?
                     (ActionBar.LayoutParams) lp : null;
 
@@ -939,7 +937,7 @@ public class ActionBarView extends AbsActionBarView {
                     MeasureSpec.EXACTLY : MeasureSpec.AT_MOST;
             int customNavWidth = Math.max(0,
                     (lp.width >= 0 ? Math.min(lp.width, availableWidth) : availableWidth)
-                            - horizontalMargin);
+                    - horizontalMargin);
             final int hgrav = (ablp != null ? ablp.gravity : DEFAULT_CUSTOM_GRAVITY) &
                     Gravity.HORIZONTAL_GRAVITY_MASK;
 
@@ -1048,7 +1046,7 @@ public class ActionBarView extends AbsActionBarView {
             customView = mCustomNavView;
         }
         if (customView != null) {
-            ViewGroup.LayoutParams lp = customView.getLayoutParams();
+            LayoutParams lp = customView.getLayoutParams();
             final ActionBar.LayoutParams ablp = lp instanceof ActionBar.LayoutParams ?
                     (ActionBar.LayoutParams) lp : null;
 
@@ -1126,12 +1124,12 @@ public class ActionBarView extends AbsActionBarView {
     }
 
     @Override
-    public ViewGroup.LayoutParams generateLayoutParams(AttributeSet attrs) {
+    public LayoutParams generateLayoutParams(AttributeSet attrs) {
         return new ActionBar.LayoutParams(getContext(), attrs);
     }
 
     @Override
-    public ViewGroup.LayoutParams generateLayoutParams(ViewGroup.LayoutParams lp) {
+    public LayoutParams generateLayoutParams(LayoutParams lp) {
         if (lp == null) {
             lp = generateDefaultLayoutParams();
         }
@@ -1192,16 +1190,16 @@ public class ActionBarView extends AbsActionBarView {
             out.writeInt(isOverflowOpen ? 1 : 0);
         }
 
-        public static final Parcelable.Creator<SavedState> CREATOR =
-                new Parcelable.Creator<SavedState>() {
-                    public SavedState createFromParcel(Parcel in) {
-                        return new SavedState(in);
-                    }
+        public static final Creator<SavedState> CREATOR =
+                new Creator<SavedState>() {
+            public SavedState createFromParcel(Parcel in) {
+                return new SavedState(in);
+            }
 
-                    public SavedState[] newArray(int size) {
-                        return new SavedState[size];
-                    }
-                };
+            public SavedState[] newArray(int size) {
+                return new SavedState[size];
+            }
+        };
     }
 
     public static class HomeView extends FrameLayout {

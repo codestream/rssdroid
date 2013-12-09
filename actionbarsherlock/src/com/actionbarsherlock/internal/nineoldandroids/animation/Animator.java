@@ -36,13 +36,14 @@ public abstract class Animator implements Cloneable {
      * Starts this animation. If the animation has a nonzero startDelay, the animation will start
      * running after that delay elapses. A non-delayed animation will have its initial
      * value(s) set immediately, followed by calls to
-     * {@link AnimatorListener#onAnimationStart(Animator)} for any listeners of this animator.
-     * <p/>
+     * {@link com.actionbarsherlock.internal.nineoldandroids.animation.Animator.AnimatorListener#onAnimationStart(com.actionbarsherlock.internal.nineoldandroids.animation.Animator)} for any listeners of this animator.
+     *
      * <p>The animation started by calling this method will be run on the thread that called
      * this method. This thread should have a Looper on it (a runtime exception will be thrown if
      * this is not the case). Also, if the animation will animate
      * properties of objects in the view hierarchy, then the calling thread should be the UI
      * thread for that view hierarchy.</p>
+     *
      */
     public void start() {
     }
@@ -50,10 +51,10 @@ public abstract class Animator implements Cloneable {
     /**
      * Cancels the animation. Unlike {@link #end()}, <code>cancel()</code> causes the animation to
      * stop in its tracks, sending an
-     * {@link android.animation.Animator.AnimatorListener#onAnimationCancel(Animator)} to
+     * {@link android.animation.Animator.AnimatorListener#onAnimationCancel(com.actionbarsherlock.internal.nineoldandroids.animation.Animator)} to
      * its listeners, followed by an
-     * {@link android.animation.Animator.AnimatorListener#onAnimationEnd(Animator)} message.
-     * <p/>
+     * {@link android.animation.Animator.AnimatorListener#onAnimationEnd(com.actionbarsherlock.internal.nineoldandroids.animation.Animator)} message.
+     *
      * <p>This method must be called on the thread that is running the animation.</p>
      */
     public void cancel() {
@@ -62,9 +63,9 @@ public abstract class Animator implements Cloneable {
     /**
      * Ends the animation. This causes the animation to assign the end value of the property being
      * animated, then calling the
-     * {@link android.animation.Animator.AnimatorListener#onAnimationEnd(Animator)} method on
+     * {@link android.animation.Animator.AnimatorListener#onAnimationEnd(com.actionbarsherlock.internal.nineoldandroids.animation.Animator)} method on
      * its listeners.
-     * <p/>
+     *
      * <p>This method must be called on the thread that is running the animation.</p>
      */
     public void end() {
@@ -81,7 +82,7 @@ public abstract class Animator implements Cloneable {
     /**
      * The amount of time, in milliseconds, to delay starting the animation after
      * {@link #start()} is called.
-     *
+
      * @param startDelay The amount of the delay, in milliseconds
      */
     public abstract void setStartDelay(long startDelay);
@@ -199,7 +200,7 @@ public abstract class Animator implements Cloneable {
             }
             return anim;
         } catch (CloneNotSupportedException e) {
-            throw new AssertionError();
+           throw new AssertionError();
         }
     }
 
@@ -229,7 +230,7 @@ public abstract class Animator implements Cloneable {
 
     /**
      * Sets the target object whose property will be animated by this animation. Not all subclasses
-     * operate on target objects (for example, {@link ValueAnimator}, but this method
+     * operate on target objects (for example, {@link com.actionbarsherlock.internal.nineoldandroids.animation.ValueAnimator}, but this method
      * is on the superclass for the convenience of dealing generically with those subclasses
      * that do handle targets.
      *

@@ -27,8 +27,8 @@ import android.view.View;
  * An Item is returned by calling one of the {@link android.view.Menu#add}
  * methods.
  * <p>
- * For a feature set of specific menu types, see {@link Menu}.
- * <p/>
+ * For a feature set of specific menu types, see {@link com.actionbarsherlock.view.Menu}.
+ *
  * <div class="special reference">
  * <h3>Developer Guides</h3>
  * <p>For information about creating menus, read the
@@ -39,13 +39,9 @@ public interface MenuItem {
     /*
      * These should be kept in sync with attrs.xml enum constants for showAsAction
      */
-    /**
-     * Never show this item as a button in an Action Bar.
-     */
+    /** Never show this item as a button in an Action Bar. */
     public static final int SHOW_AS_ACTION_NEVER = android.view.MenuItem.SHOW_AS_ACTION_NEVER;
-    /**
-     * Show this item as a button in an Action Bar if the system decides there is room for it.
-     */
+    /** Show this item as a button in an Action Bar if the system decides there is room for it. */
     public static final int SHOW_AS_ACTION_IF_ROOM = android.view.MenuItem.SHOW_AS_ACTION_IF_ROOM;
     /**
      * Always show this item as a button in an Action Bar.
@@ -72,8 +68,8 @@ public interface MenuItem {
      * Interface definition for a callback to be invoked when a menu item is
      * clicked.
      *
-     * @see Activity#onContextItemSelected(MenuItem)
-     * @see Activity#onOptionsItemSelected(MenuItem)
+     * @see Activity#onContextItemSelected(com.actionbarsherlock.view.MenuItem)
+     * @see Activity#onOptionsItemSelected(com.actionbarsherlock.view.MenuItem)
      */
     public interface OnMenuItemClickListener {
         /**
@@ -82,6 +78,7 @@ public interface MenuItem {
          * executed.
          *
          * @param item The menu item that was invoked.
+         *
          * @return Return true to consume this click and prevent others from
          *         executing.
          */
@@ -90,27 +87,25 @@ public interface MenuItem {
 
     /**
      * Interface definition for a callback to be invoked when a menu item
-     * marked with {@link MenuItem#SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW} is
+     * marked with {@link com.actionbarsherlock.view.MenuItem#SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW} is
      * expanded or collapsed.
      *
-     * @see MenuItem#expandActionView()
-     * @see MenuItem#collapseActionView()
-     * @see MenuItem#setShowAsActionFlags(int)
+     * @see com.actionbarsherlock.view.MenuItem#expandActionView()
+     * @see com.actionbarsherlock.view.MenuItem#collapseActionView()
+     * @see com.actionbarsherlock.view.MenuItem#setShowAsActionFlags(int)
      */
     public interface OnActionExpandListener {
         /**
-         * Called when a menu item with {@link MenuItem#SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW}
+         * Called when a menu item with {@link com.actionbarsherlock.view.MenuItem#SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW}
          * is expanded.
-         *
          * @param item Item that was expanded
          * @return true if the item should expand, false if expansion should be suppressed.
          */
         public boolean onMenuItemActionExpand(MenuItem item);
 
         /**
-         * Called when a menu item with {@link MenuItem#SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW}
+         * Called when a menu item with {@link com.actionbarsherlock.view.MenuItem#SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW}
          * is collapsed.
-         *
          * @param item Item that was collapsed
          * @return true if the item should collapse, false if collapsing should be suppressed.
          */
@@ -137,13 +132,13 @@ public interface MenuItem {
      * Return the category and order within the category of this item. This
      * item will be shown before all items (within its category) that have
      * order greater than this value.
-     * <p/>
+     * <p>
      * An order integer contains the item's category (the upper bits of the
      * integer; set by or/add the category with the order within the
      * category) and the ordering of the item within that category (the
-     * lower bits). Example categories are {@link Menu#CATEGORY_SYSTEM},
-     * {@link Menu#CATEGORY_SECONDARY}, {@link Menu#CATEGORY_ALTERNATIVE},
-     * {@link Menu#CATEGORY_CONTAINER}. See {@link Menu} for a full list.
+     * lower bits). Example categories are {@link com.actionbarsherlock.view.Menu#CATEGORY_SYSTEM},
+     * {@link com.actionbarsherlock.view.Menu#CATEGORY_SECONDARY}, {@link com.actionbarsherlock.view.Menu#CATEGORY_ALTERNATIVE},
+     * {@link com.actionbarsherlock.view.Menu#CATEGORY_CONTAINER}. See {@link com.actionbarsherlock.view.Menu} for a full list.
      *
      * @return The order of this item.
      */
@@ -159,9 +154,9 @@ public interface MenuItem {
 
     /**
      * Change the title associated with this item.
-     * <p/>
+     * <p>
      * Some menu types do not sufficient space to show the full title, and
-     * instead a condensed title is preferred. See {@link Menu} for more
+     * instead a condensed title is preferred. See {@link com.actionbarsherlock.view.Menu} for more
      * information.
      *
      * @param title The resource id of the new text to be displayed.
@@ -200,7 +195,7 @@ public interface MenuItem {
     /**
      * Change the icon associated with this item. This icon will not always be
      * shown, so the title should be sufficient in describing this item. See
-     * {@link Menu} for the menu types that support icons.
+     * {@link com.actionbarsherlock.view.Menu} for the menu types that support icons.
      *
      * @param icon The new icon (as a Drawable) to be displayed.
      * @return This Item so additional setters can be called.
@@ -210,8 +205,8 @@ public interface MenuItem {
     /**
      * Change the icon associated with this item. This icon will not always be
      * shown, so the title should be sufficient in describing this item. See
-     * {@link Menu} for the menu types that support icons.
-     * <p/>
+     * {@link com.actionbarsherlock.view.Menu} for the menu types that support icons.
+     * <p>
      * This method will set the resource ID of the icon which will be used to
      * lazily get the Drawable when this item is being shown.
      *
@@ -233,18 +228,18 @@ public interface MenuItem {
      * Intent associated with a menu item.  If you set one, and nothing
      * else handles the item, then the default behavior will be to call
      * {@link android.content.Context#startActivity} with the given Intent.
-     * <p/>
+     *
      * <p>Note that setIntent() can not be used with the versions of
-     * {@link Menu#add} that take a Runnable, because {@link Runnable#run}
+     * {@link com.actionbarsherlock.view.Menu#add} that take a Runnable, because {@link Runnable#run}
      * does not return a value so there is no way to tell if it handled the
      * item.  In this case it is assumed that the Runnable always handles
      * the item, and the intent will never be started.
      *
+     * @see #getIntent
      * @param intent The Intent to associated with the item.  This Intent
      *               object is <em>not</em> copied, so be careful not to
      *               modify it later.
      * @return This Item so additional setters can be called.
-     * @see #getIntent
      */
     public MenuItem setIntent(Intent intent);
 
@@ -253,9 +248,9 @@ public interface MenuItem {
      * reference to the Intent which you can change as desired to modify
      * what the Item is holding.
      *
+     * @see #setIntent
      * @return Returns the last value supplied to {@link #setIntent}, or
      *         null.
-     * @see #setIntent
      */
     public Intent getIntent();
 
@@ -265,24 +260,24 @@ public interface MenuItem {
      * generates the given character is pressed alone or along with with the alt
      * key. Also note that case is not significant and that alphabetic shortcut
      * characters will be displayed in lower case.
-     * <p/>
-     * See {@link Menu} for the menu types that support shortcuts.
+     * <p>
+     * See {@link com.actionbarsherlock.view.Menu} for the menu types that support shortcuts.
      *
      * @param numericChar The numeric shortcut key. This is the shortcut when
-     *                    using a numeric (e.g., 12-key) keyboard.
-     * @param alphaChar   The alphabetic shortcut key. This is the shortcut when
-     *                    using a keyboard with alphabetic keys.
+     *        using a numeric (e.g., 12-key) keyboard.
+     * @param alphaChar The alphabetic shortcut key. This is the shortcut when
+     *        using a keyboard with alphabetic keys.
      * @return This Item so additional setters can be called.
      */
     public MenuItem setShortcut(char numericChar, char alphaChar);
 
     /**
      * Change the numeric shortcut associated with this item.
-     * <p/>
-     * See {@link Menu} for the menu types that support shortcuts.
+     * <p>
+     * See {@link com.actionbarsherlock.view.Menu} for the menu types that support shortcuts.
      *
      * @param numericChar The numeric shortcut key.  This is the shortcut when
-     *                    using a 12-key (numeric) keyboard.
+     *                 using a 12-key (numeric) keyboard.
      * @return This Item so additional setters can be called.
      */
     public MenuItem setNumericShortcut(char numericChar);
@@ -301,11 +296,11 @@ public interface MenuItem {
      * shortcut characters will be displayed in lower case. Note that menu items
      * with the characters '\b' or '\n' as shortcuts will get triggered by the
      * Delete key or Carriage Return key, respectively.
-     * <p/>
-     * See {@link Menu} for the menu types that support shortcuts.
+     * <p>
+     * See {@link com.actionbarsherlock.view.Menu} for the menu types that support shortcuts.
      *
      * @param alphaChar The alphabetic shortcut key. This is the shortcut when
-     *                  using a keyboard with alphabetic keys.
+     *        using a keyboard with alphabetic keys.
      * @return This Item so additional setters can be called.
      */
     public MenuItem setAlphabeticShortcut(char alphaChar);
@@ -322,15 +317,15 @@ public interface MenuItem {
      * not actually display a check mark (see {@link #setChecked} for that);
      * rather, it ensures there is room in the item in which to display a
      * check mark.
-     * <p/>
-     * See {@link Menu} for the menu types that support check marks.
+     * <p>
+     * See {@link com.actionbarsherlock.view.Menu} for the menu types that support check marks.
      *
      * @param checkable Set to true to allow a check mark, false to
-     *                  disallow. The default is false.
-     * @return This Item so additional setters can be called.
+     *            disallow. The default is false.
      * @see #setChecked
      * @see #isCheckable
-     * @see Menu#setGroupCheckable
+     * @see com.actionbarsherlock.view.Menu#setGroupCheckable
+     * @return This Item so additional setters can be called.
      */
     public MenuItem setCheckable(boolean checkable);
 
@@ -338,6 +333,7 @@ public interface MenuItem {
      * Return whether the item can currently display a check mark.
      *
      * @return If a check mark can be displayed, returns true.
+     *
      * @see #setCheckable
      */
     public boolean isCheckable();
@@ -346,17 +342,17 @@ public interface MenuItem {
      * Control whether this item is shown with a check mark.  Note that you
      * must first have enabled checking with {@link #setCheckable} or else
      * the check mark will not appear.  If this item is a member of a group that contains
-     * mutually-exclusive items (set via {@link Menu#setGroupCheckable(int, boolean, boolean)},
+     * mutually-exclusive items (set via {@link com.actionbarsherlock.view.Menu#setGroupCheckable(int, boolean, boolean)},
      * the other items in the group will be unchecked.
-     * <p/>
-     * See {@link Menu} for the menu types that support check marks.
+     * <p>
+     * See {@link com.actionbarsherlock.view.Menu} for the menu types that support check marks.
      *
+     * @see #setCheckable
+     * @see #isChecked
+     * @see com.actionbarsherlock.view.Menu#setGroupCheckable
      * @param checked Set to true to display a check mark, false to hide
      *                it.  The default value is false.
      * @return This Item so additional setters can be called.
-     * @see #setCheckable
-     * @see #isChecked
-     * @see Menu#setGroupCheckable
      */
     public MenuItem setChecked(boolean checked);
 
@@ -364,6 +360,7 @@ public interface MenuItem {
      * Return whether the item is currently displaying a check mark.
      *
      * @return If a check mark is displayed, returns true.
+     *
      * @see #setChecked
      */
     public boolean isChecked();
@@ -374,7 +371,7 @@ public interface MenuItem {
      * set it to invisible and {@link #setEnabled(boolean) disabled}).
      *
      * @param visible If true then the item will be visible; if false it is
-     *                hidden.
+     *        hidden.
      * @return This Item so additional setters can be called.
      */
     public MenuItem setVisible(boolean visible);
@@ -392,7 +389,7 @@ public interface MenuItem {
      * visible.
      *
      * @param enabled If true then the item will be invokable; if false it is
-     *                won't be invokable.
+     *        won't be invokable.
      * @return This Item so additional setters can be called.
      */
     public MenuItem setEnabled(boolean enabled);
@@ -424,24 +421,24 @@ public interface MenuItem {
     /**
      * Set a custom listener for invocation of this menu item. In most
      * situations, it is more efficient and easier to use
-     * {@link Activity#onOptionsItemSelected(MenuItem)} or
-     * {@link Activity#onContextItemSelected(MenuItem)}.
+     * {@link Activity#onOptionsItemSelected(com.actionbarsherlock.view.MenuItem)} or
+     * {@link Activity#onContextItemSelected(com.actionbarsherlock.view.MenuItem)}.
      *
      * @param menuItemClickListener The object to receive invokations.
      * @return This Item so additional setters can be called.
-     * @see Activity#onOptionsItemSelected(MenuItem)
-     * @see Activity#onContextItemSelected(MenuItem)
+     * @see Activity#onOptionsItemSelected(com.actionbarsherlock.view.MenuItem)
+     * @see Activity#onContextItemSelected(com.actionbarsherlock.view.MenuItem)
      */
-    public MenuItem setOnMenuItemClickListener(MenuItem.OnMenuItemClickListener menuItemClickListener);
+    public MenuItem setOnMenuItemClickListener(OnMenuItemClickListener menuItemClickListener);
 
     /**
      * Gets the extra information linked to this menu item.  This extra
      * information is set by the View that added this menu item to the
      * menu.
      *
+     * @see OnCreateContextMenuListener
      * @return The extra information linked to the View that added this
      *         menu item to the menu. This can be null.
-     * @see OnCreateContextMenuListener
      */
     public ContextMenuInfo getMenuInfo();
 
@@ -454,10 +451,11 @@ public interface MenuItem {
      * it should be shown with a text label.
      *
      * @param actionEnum How the item should display. One of
-     *                   {@link #SHOW_AS_ACTION_ALWAYS}, {@link #SHOW_AS_ACTION_IF_ROOM}, or
-     *                   {@link #SHOW_AS_ACTION_NEVER}. SHOW_AS_ACTION_NEVER is the default.
+     * {@link #SHOW_AS_ACTION_ALWAYS}, {@link #SHOW_AS_ACTION_IF_ROOM}, or
+     * {@link #SHOW_AS_ACTION_NEVER}. SHOW_AS_ACTION_NEVER is the default.
+     *
      * @see android.app.ActionBar
-     * @see #setActionView(View)
+     * @see #setActionView(android.view.View)
      */
     public void setShowAsAction(int actionEnum);
 
@@ -468,16 +466,17 @@ public interface MenuItem {
      * be used, and you may optionally OR the value with {@link #SHOW_AS_ACTION_WITH_TEXT}.
      * SHOW_AS_ACTION_WITH_TEXT requests that when the item is shown as an action,
      * it should be shown with a text label.
-     * <p/>
+     *
      * <p>Note: This method differs from {@link #setShowAsAction(int)} only in that it
      * returns the current MenuItem instance for call chaining.
      *
      * @param actionEnum How the item should display. One of
-     *                   {@link #SHOW_AS_ACTION_ALWAYS}, {@link #SHOW_AS_ACTION_IF_ROOM}, or
-     *                   {@link #SHOW_AS_ACTION_NEVER}. SHOW_AS_ACTION_NEVER is the default.
-     * @return This MenuItem instance for call chaining.
+     * {@link #SHOW_AS_ACTION_ALWAYS}, {@link #SHOW_AS_ACTION_IF_ROOM}, or
+     * {@link #SHOW_AS_ACTION_NEVER}. SHOW_AS_ACTION_NEVER is the default.
+     *
      * @see android.app.ActionBar
-     * @see #setActionView(View)
+     * @see #setActionView(android.view.View)
+     * @return This MenuItem instance for call chaining.
      */
     public MenuItem setShowAsActionFlags(int actionEnum);
 
@@ -486,12 +485,13 @@ public interface MenuItem {
      * of an automatically generated menu item element in the UI when this item is shown
      * as an action within a parent.
      * <p>
-     * <strong>Note:</strong> Setting an action view overrides the action provider
-     * set via {@link #setActionProvider(ActionProvider)}.
+     *   <strong>Note:</strong> Setting an action view overrides the action provider
+     *           set via {@link #setActionProvider(com.actionbarsherlock.view.ActionProvider)}.
      * </p>
      *
      * @param view View to use for presenting this item to the user.
      * @return This Item so additional setters can be called.
+     *
      * @see #setShowAsAction(int)
      */
     public MenuItem setActionView(View view);
@@ -501,12 +501,13 @@ public interface MenuItem {
      * of an automatically generated menu item element in the UI when this item is shown
      * as an action within a parent.
      * <p>
-     * <strong>Note:</strong> Setting an action view overrides the action provider
-     * set via {@link #setActionProvider(ActionProvider)}.
+     *   <strong>Note:</strong> Setting an action view overrides the action provider
+     *           set via {@link #setActionProvider(com.actionbarsherlock.view.ActionProvider)}.
      * </p>
      *
      * @param resId Layout resource to use for presenting this item to the user.
      * @return This Item so additional setters can be called.
+     *
      * @see #setShowAsAction(int)
      */
     public MenuItem setActionView(int resId);
@@ -515,32 +516,35 @@ public interface MenuItem {
      * Returns the currently set action view for this menu item.
      *
      * @return This item's action view
-     * @see #setActionView(View)
+     *
+     * @see #setActionView(android.view.View)
      * @see #setShowAsAction(int)
      */
     public View getActionView();
 
     /**
-     * Sets the {@link ActionProvider} responsible for creating an action view if
+     * Sets the {@link com.actionbarsherlock.view.ActionProvider} responsible for creating an action view if
      * the item is placed on the action bar. The provider also provides a default
      * action invoked if the item is placed in the overflow menu.
      * <p>
-     * <strong>Note:</strong> Setting an action provider overrides the action view
-     * set via {@link #setActionView(int)} or {@link #setActionView(View)}.
+     *   <strong>Note:</strong> Setting an action provider overrides the action view
+     *           set via {@link #setActionView(int)} or {@link #setActionView(android.view.View)}.
      * </p>
      *
      * @param actionProvider The action provider.
      * @return This Item so additional setters can be called.
-     * @see ActionProvider
+     *
+     * @see com.actionbarsherlock.view.ActionProvider
      */
     public MenuItem setActionProvider(ActionProvider actionProvider);
 
     /**
-     * Gets the {@link ActionProvider}.
+     * Gets the {@link com.actionbarsherlock.view.ActionProvider}.
      *
      * @return The action provider.
-     * @see ActionProvider
-     * @see #setActionProvider(ActionProvider)
+     *
+     * @see com.actionbarsherlock.view.ActionProvider
+     * @see #setActionProvider(com.actionbarsherlock.view.ActionProvider)
      */
     public ActionProvider getActionProvider();
 
@@ -548,8 +552,8 @@ public interface MenuItem {
      * Expand the action view associated with this menu item.
      * The menu item must have an action view set, as well as
      * the showAsAction flag {@link #SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW}.
-     * If a listener has been set using {@link #setOnActionExpandListener(OnActionExpandListener)}
-     * it will have its {@link OnActionExpandListener#onMenuItemActionExpand(MenuItem)}
+     * If a listener has been set using {@link #setOnActionExpandListener(com.actionbarsherlock.view.MenuItem.OnActionExpandListener)}
+     * it will have its {@link com.actionbarsherlock.view.MenuItem.OnActionExpandListener#onMenuItemActionExpand(com.actionbarsherlock.view.MenuItem)}
      * method invoked. The listener may return false from this method to prevent expanding
      * the action view.
      *
@@ -561,8 +565,8 @@ public interface MenuItem {
      * Collapse the action view associated with this menu item.
      * The menu item must have an action view set, as well as the showAsAction flag
      * {@link #SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW}. If a listener has been set using
-     * {@link #setOnActionExpandListener(OnActionExpandListener)} it will have its
-     * {@link OnActionExpandListener#onMenuItemActionCollapse(MenuItem)} method invoked.
+     * {@link #setOnActionExpandListener(com.actionbarsherlock.view.MenuItem.OnActionExpandListener)} it will have its
+     * {@link com.actionbarsherlock.view.MenuItem.OnActionExpandListener#onMenuItemActionCollapse(com.actionbarsherlock.view.MenuItem)} method invoked.
      * The listener may return false from this method to prevent collapsing the action view.
      *
      * @return true if the action view was collapsed, false otherwise.
@@ -573,15 +577,16 @@ public interface MenuItem {
      * Returns true if this menu item's action view has been expanded.
      *
      * @return true if the item's action view is expanded, false otherwise.
+     *
      * @see #expandActionView()
      * @see #collapseActionView()
      * @see #SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW
-     * @see OnActionExpandListener
+     * @see com.actionbarsherlock.view.MenuItem.OnActionExpandListener
      */
     public boolean isActionViewExpanded();
 
     /**
-     * Set an {@link OnActionExpandListener} on this menu item to be notified when
+     * Set an {@link com.actionbarsherlock.view.MenuItem.OnActionExpandListener} on this menu item to be notified when
      * the associated action view is expanded or collapsed. The menu item must
      * be configured to expand or collapse its action view using the flag
      * {@link #SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW}.

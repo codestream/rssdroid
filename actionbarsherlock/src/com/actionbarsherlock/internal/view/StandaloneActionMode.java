@@ -33,7 +33,7 @@ import com.actionbarsherlock.view.MenuItem;
 public class StandaloneActionMode extends ActionMode implements MenuBuilder.Callback {
     private Context mContext;
     private ActionBarContextView mContextView;
-    private ActionMode.Callback mCallback;
+    private Callback mCallback;
     private WeakReference<View> mCustomView;
     private boolean mFinished;
     private boolean mFocusable;
@@ -41,7 +41,7 @@ public class StandaloneActionMode extends ActionMode implements MenuBuilder.Call
     private MenuBuilder mMenu;
 
     public StandaloneActionMode(Context context, ActionBarContextView view,
-                                ActionMode.Callback callback, boolean isFocusable) {
+            Callback callback, boolean isFocusable) {
         mContext = context;
         mContextView = view;
         mCallback = callback;

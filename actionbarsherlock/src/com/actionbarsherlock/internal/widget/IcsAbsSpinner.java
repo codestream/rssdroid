@@ -52,9 +52,7 @@ public abstract class IcsAbsSpinner extends IcsAdapterView<SpinnerAdapter> {
     final RecycleBin mRecycler = new RecycleBin();
     private DataSetObserver mDataSetObserver;
 
-    /**
-     * Temporary frame to hold a child View's frame rectangle
-     */
+    /** Temporary frame to hold a child View's frame rectangle */
     private Rect mTouchFrame;
 
     public IcsAbsSpinner(Context context) {
@@ -99,7 +97,6 @@ public abstract class IcsAbsSpinner extends IcsAdapterView<SpinnerAdapter> {
      * The Adapter is used to provide the data which backs this Spinner.
      * It also provides methods to transform spinner items based on their position
      * relative to the selected item.
-     *
      * @param adapter The SpinnerAdapter to use for this Spinner
      */
     @Override
@@ -160,11 +157,11 @@ public abstract class IcsAbsSpinner extends IcsAdapterView<SpinnerAdapter> {
 
     /**
      * @see android.view.View#measure(int, int)
-     *      <p/>
-     *      Figure out the dimensions of this Spinner. The width comes from
-     *      the widthMeasureSpec as Spinnners can't have their width set to
-     *      UNSPECIFIED. The height is based on the height of the selected item
-     *      plus padding.
+     *
+     * Figure out the dimensions of this Spinner. The width comes from
+     * the widthMeasureSpec as Spinnners can't have their width set to
+     * UNSPECIFIED. The height is based on the height of the selected item
+     * plus padding.
      */
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -256,15 +253,15 @@ public abstract class IcsAbsSpinner extends IcsAdapterView<SpinnerAdapter> {
     }
 
     @Override
-    protected ViewGroup.LayoutParams generateDefaultLayoutParams() {
-        return new ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT);
+    protected LayoutParams generateDefaultLayoutParams() {
+        return new LayoutParams(
+                LayoutParams.MATCH_PARENT,
+                LayoutParams.WRAP_CONTENT);
     }
 
     void recycleAllViews() {
         final int childCount = getChildCount();
-        final IcsAbsSpinner.RecycleBin recycleBin = mRecycler;
+        final RecycleBin recycleBin = mRecycler;
         final int position = mFirstPosition;
 
         // All views go in recycler
@@ -297,12 +294,13 @@ public abstract class IcsAbsSpinner extends IcsAdapterView<SpinnerAdapter> {
      * Makes the item at the supplied position selected.
      *
      * @param position Position to select
-     * @param animate  Should the transition be animated
+     * @param animate Should the transition be animated
+     *
      */
     void setSelectionInt(int position, boolean animate) {
         if (position != mOldSelectedPosition) {
             mBlockLayoutRequests = true;
-            int delta = position - mSelectedPosition;
+            int delta  = position - mSelectedPosition;
             setNextSelectedPositionInt(position);
             layout(delta, animate);
             mBlockLayoutRequests = false;
@@ -406,8 +404,8 @@ public abstract class IcsAbsSpinner extends IcsAdapterView<SpinnerAdapter> {
                     + " position=" + position + "}";
         }
 
-        public static final Parcelable.Creator<SavedState> CREATOR
-                = new Parcelable.Creator<SavedState>() {
+        public static final Creator<SavedState> CREATOR
+                = new Creator<SavedState>() {
             public SavedState createFromParcel(Parcel in) {
                 return new SavedState(in);
             }

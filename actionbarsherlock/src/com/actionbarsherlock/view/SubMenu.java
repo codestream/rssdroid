@@ -20,10 +20,10 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 
 /**
- * Subclass of {@link Menu} for sub menus.
+ * Subclass of {@link com.actionbarsherlock.view.Menu} for sub menus.
  * <p>
  * Sub menus do not support item icons, or nested sub menus.
- * <p/>
+ *
  * <div class="special reference">
  * <h3>Developer Guides</h3>
  * <p>For information about creating menus, read the
@@ -60,19 +60,19 @@ public interface SubMenu extends Menu {
 
     /**
      * Sets the submenu header's icon to the icon given in <var>icon</var>
-     * {@link Drawable}.
+     * {@link android.graphics.drawable.Drawable}.
      *
-     * @param icon The {@link Drawable} used for the icon.
+     * @param icon The {@link android.graphics.drawable.Drawable} used for the icon.
      * @return This SubMenu so additional setters can be called.
      */
     public SubMenu setHeaderIcon(Drawable icon);
 
     /**
-     * Sets the header of the submenu to the {@link View} given in
+     * Sets the header of the submenu to the {@link android.view.View} given in
      * <var>view</var>. This replaces the header title and icon (and those
      * replace this).
      *
-     * @param view The {@link View} used for the header.
+     * @param view The {@link android.view.View} used for the header.
      * @return This SubMenu so additional setters can be called.
      */
     public SubMenu setHeaderView(View view);
@@ -85,26 +85,26 @@ public interface SubMenu extends Menu {
     /**
      * Change the icon associated with this submenu's item in its parent menu.
      *
+     * @see com.actionbarsherlock.view.MenuItem#setIcon(int)
      * @param iconRes The new icon (as a resource ID) to be displayed.
      * @return This SubMenu so additional setters can be called.
-     * @see MenuItem#setIcon(int)
      */
     public SubMenu setIcon(int iconRes);
 
     /**
      * Change the icon associated with this submenu's item in its parent menu.
      *
+     * @see com.actionbarsherlock.view.MenuItem#setIcon(android.graphics.drawable.Drawable)
      * @param icon The new icon (as a Drawable) to be displayed.
      * @return This SubMenu so additional setters can be called.
-     * @see MenuItem#setIcon(Drawable)
      */
     public SubMenu setIcon(Drawable icon);
 
     /**
-     * Gets the {@link MenuItem} that represents this submenu in the parent
+     * Gets the {@link com.actionbarsherlock.view.MenuItem} that represents this submenu in the parent
      * menu.  Use this for setting additional item attributes.
      *
-     * @return The {@link MenuItem} that launches the submenu when invoked.
+     * @return The {@link com.actionbarsherlock.view.MenuItem} that launches the submenu when invoked.
      */
     public MenuItem getItem();
 }

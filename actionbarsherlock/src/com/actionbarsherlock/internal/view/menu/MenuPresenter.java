@@ -31,7 +31,6 @@ public interface MenuPresenter {
     public interface Callback {
         /**
          * Called when a menu is closing.
-         *
          * @param menu
          * @param allMenusAreClosing
          */
@@ -52,16 +51,16 @@ public interface MenuPresenter {
     /**
      * Initialize this presenter for the given context and menu.
      * This method is called by MenuBuilder when a presenter is
-     * added. See {@link MenuBuilder#addMenuPresenter(MenuPresenter)}
+     * added. See {@link com.actionbarsherlock.internal.view.menu.MenuBuilder#addMenuPresenter(com.actionbarsherlock.internal.view.menu.MenuPresenter)}
      *
      * @param context Context for this presenter; used for view creation and resource management
-     * @param menu    Menu to host
+     * @param menu Menu to host
      */
     public void initForMenu(Context context, MenuBuilder menu);
 
     /**
      * Retrieve a MenuView to display the menu specified in
-     * {@link #initForMenu(Context, Menu)}.
+     * {@link #initForMenu(android.content.Context, Menu)}.
      *
      * @param root Intended parent of the MenuView.
      * @return A freshly created MenuView.
@@ -79,7 +78,6 @@ public interface MenuPresenter {
     /**
      * Set a callback object that will be notified of menu events
      * related to this specific presentation.
-     *
      * @param cb Callback that will be notified of future events
      */
     public void setCallback(Callback cb);
@@ -99,14 +97,13 @@ public interface MenuPresenter {
      * closing. Presenter implementations should close the representation
      * of the menu indicated as necessary and notify a registered callback.
      *
-     * @param menu               Menu or submenu that is closing.
+     * @param menu Menu or submenu that is closing.
      * @param allMenusAreClosing True if all associated menus are closing.
      */
     public void onCloseMenu(MenuBuilder menu, boolean allMenusAreClosing);
 
     /**
      * Called by Menu implementations to flag items that will be shown as actions.
-     *
      * @return true if this presenter changed the action status of any items.
      */
     public boolean flagActionItems();
@@ -131,23 +128,20 @@ public interface MenuPresenter {
 
     /**
      * Returns an ID for determining how to save/restore instance state.
-     *
      * @return a valid ID value.
      */
     public int getId();
 
     /**
      * Returns a Parcelable describing the current state of the presenter.
-     * It will be passed to the {@link #onRestoreInstanceState(Parcelable)}
+     * It will be passed to the {@link #onRestoreInstanceState(android.os.Parcelable)}
      * method of the presenter sharing the same ID later.
-     *
      * @return The saved instance state
      */
     public Parcelable onSaveInstanceState();
 
     /**
      * Supplies the previously saved instance state to be restored.
-     *
      * @param state The previously saved instance state
      */
     public void onRestoreInstanceState(Parcelable state);

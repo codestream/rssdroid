@@ -20,20 +20,20 @@ package com.actionbarsherlock.view;
  * When a {@link View} implements this interface it will receive callbacks
  * when expanded or collapsed as an action view alongside the optional,
  * app-specified callbacks to {@link OnActionExpandListener}.
- * <p/>
- * <p>See {@link MenuItem} for more information about action views.
+ *
+ * <p>See {@link com.actionbarsherlock.view.MenuItem} for more information about action views.
  * See {@link android.app.ActionBar} for more information about the action bar.
  */
 public interface CollapsibleActionView {
     /**
      * Called when this view is expanded as an action view.
-     * See {@link MenuItem#expandActionView()}.
+     * See {@link com.actionbarsherlock.view.MenuItem#expandActionView()}.
      */
     public void onActionViewExpanded();
 
     /**
      * Called when this view is collapsed as an action view.
-     * See {@link MenuItem#collapseActionView()}.
+     * See {@link com.actionbarsherlock.view.MenuItem#collapseActionView()}.
      */
     public void onActionViewCollapsed();
 }

@@ -37,7 +37,7 @@ import com.actionbarsherlock.widget.ActivityChooserModel.OnChooseActivityListene
  * that enable data sharing and also to show a sub menu with sharing activities
  * if the hosting item is placed on the overflow menu.
  * <p>
- * Here is how to use the action provider with custom backing file in a {@link MenuItem}:
+ * Here is how to use the action provider with custom backing file in a {@link com.actionbarsherlock.view.MenuItem}:
  * </p>
  * <p>
  * <pre>
@@ -49,8 +49,8 @@ import com.actionbarsherlock.widget.ActivityChooserModel.OnChooseActivityListene
  *      // Get the provider and hold onto it to set/change the share intent.
  *      mShareActionProvider = (ShareActionProvider) menuItem.getActionProvider();
  *      // Set history different from the default before getting the action
- *      // view since a call to {@link MenuItem#getActionView() MenuItem.getActionView()} calls
- *      // {@link ActionProvider#onCreateActionView()} which uses the backing file name. Omit this
+ *      // view since a call to {@link com.actionbarsherlock.view.MenuItem#getActionView() MenuItem.getActionView()} calls
+ *      // {@link com.actionbarsherlock.view.ActionProvider#onCreateActionView()} which uses the backing file name. Omit this
  *      // line if using the default share history file is desired.
  *      mShareActionProvider.setShareHistoryFileName("custom_share_history.xml");
  *      . . .
@@ -69,7 +69,7 @@ import com.actionbarsherlock.widget.ActivityChooserModel.OnChooseActivityListene
  * in the context of a menu item, the use of the provider is not limited to menu items.
  * </p>
  *
- * @see ActionProvider
+ * @see com.actionbarsherlock.view.ActionProvider
  */
 public class ShareActionProvider extends ActionProvider {
 
@@ -84,7 +84,7 @@ public class ShareActionProvider extends ActionProvider {
          * behavior which is launching it.
          * <p>
          * <strong>Note:</strong> Modifying the intent is not permitted and
-         * any changes to the latter will be ignored.
+         *     any changes to the latter will be ignored.
          * </p>
          *
          * @param source The source of the notification.
@@ -108,7 +108,7 @@ public class ShareActionProvider extends ActionProvider {
      * Listener for handling menu item clicks.
      */
     private final ShareMenuItemOnMenuItemClickListener mOnMenuItemClickListener =
-            new ShareMenuItemOnMenuItemClickListener();
+        new ShareMenuItemOnMenuItemClickListener();
 
     /**
      * The default name for storing share history.
@@ -145,9 +145,8 @@ public class ShareActionProvider extends ActionProvider {
      * not rely on the default behavior which is to launch the activity.
      * <p>
      * <strong>Note:</strong> If you choose the backing share history file
-     * you will still be notified in this callback.
+     *     you will still be notified in this callback.
      * </p>
-     *
      * @param listener The listener.
      */
     public void setOnShareTargetSelectedListener(OnShareTargetSelectedListener listener) {
@@ -207,8 +206,8 @@ public class ShareActionProvider extends ActionProvider {
         for (int i = 0; i < collapsedActivityCount; i++) {
             ResolveInfo activity = dataModel.getActivity(i);
             subMenu.add(0, i, i, activity.loadLabel(packageManager))
-                    .setIcon(activity.loadIcon(packageManager))
-                    .setOnMenuItemClickListener(mOnMenuItemClickListener);
+                .setIcon(activity.loadIcon(packageManager))
+                .setOnMenuItemClickListener(mOnMenuItemClickListener);
         }
 
         if (collapsedActivityCount < expandedActivityCount) {
@@ -219,8 +218,8 @@ public class ShareActionProvider extends ActionProvider {
             for (int i = 0; i < expandedActivityCount; i++) {
                 ResolveInfo activity = dataModel.getActivity(i);
                 expandedSubMenu.add(0, i, i, activity.loadLabel(packageManager))
-                        .setIcon(activity.loadIcon(packageManager))
-                        .setOnMenuItemClickListener(mOnMenuItemClickListener);
+                    .setIcon(activity.loadIcon(packageManager))
+                    .setOnMenuItemClickListener(mOnMenuItemClickListener);
             }
         }
     }
@@ -231,11 +230,11 @@ public class ShareActionProvider extends ActionProvider {
      * for all view created by {@link #onCreateActionView()}. Defaults to
      * {@link #DEFAULT_SHARE_HISTORY_FILE_NAME}. Set to <code>null</code>
      * if share history should not be persisted between sessions.
-     * <p/>
+     * <p>
      * <strong>Note:</strong> The history file name can be set any time, however
      * only the action views created by {@link #onCreateActionView()} after setting
      * the file name will be backed by the provided file.
-     * <p/>
+     * <p>
      *
      * @param shareHistoryFile The share history file name.
      */
@@ -259,12 +258,13 @@ public class ShareActionProvider extends ActionProvider {
      * </p>
      *
      * @param shareIntent The share intent.
-     * @see Intent#ACTION_SEND
-     * @see Intent#ACTION_SEND_MULTIPLE
+     *
+     * @see android.content.Intent#ACTION_SEND
+     * @see android.content.Intent#ACTION_SEND_MULTIPLE
      */
     public void setShareIntent(Intent shareIntent) {
         ActivityChooserModel dataModel = ActivityChooserModel.get(mContext,
-                mShareHistoryFileName);
+            mShareHistoryFileName);
         dataModel.setIntent(shareIntent);
     }
 
@@ -301,7 +301,7 @@ public class ShareActionProvider extends ActionProvider {
     }
 
     /**
-     * Policy that delegates to the {@link OnShareTargetSelectedListener}, if such.
+     * Policy that delegates to the {@link com.actionbarsherlock.widget.ShareActionProvider.OnShareTargetSelectedListener}, if such.
      */
     private class ShareAcitivityChooserModelPolicy implements OnChooseActivityListener {
         @Override

@@ -24,7 +24,7 @@ import android.view.View;
  * It is responsible for creating a view that performs an action that accomplishes the task.
  * This class also implements other functions such a performing a default action.
  * <p>
- * An ActionProvider can be optionally specified for a {@link MenuItem} and in such a
+ * An ActionProvider can be optionally specified for a {@link com.actionbarsherlock.view.MenuItem} and in such a
  * case it will be responsible for creating the action view that appears in the
  * {@link android.app.ActionBar} as a substitute for the menu item when the item is
  * displayed as an action item. Also the provider is responsible for performing a
@@ -37,8 +37,8 @@ import android.view.View;
  * There are two ways for using an action provider for creating and handling of action views:
  * <ul>
  * <li>
- * Setting the action provider on a {@link MenuItem} directly by calling
- * {@link MenuItem#setActionProvider(ActionProvider)}.
+ * Setting the action provider on a {@link com.actionbarsherlock.view.MenuItem} directly by calling
+ * {@link com.actionbarsherlock.view.MenuItem#setActionProvider(com.actionbarsherlock.view.ActionProvider)}.
  * </li>
  * <li>
  * Declaring the action provider in the menu XML resource. For example:
@@ -55,8 +55,8 @@ import android.view.View;
  * </ul>
  * </p>
  *
- * @see MenuItem#setActionProvider(ActionProvider)
- * @see MenuItem#getActionProvider()
+ * @see com.actionbarsherlock.view.MenuItem#setActionProvider(com.actionbarsherlock.view.ActionProvider)
+ * @see com.actionbarsherlock.view.MenuItem#getActionProvider()
  */
 public abstract class ActionProvider {
     private SubUiVisibilityListener mSubUiVisibilityListener;
@@ -87,20 +87,20 @@ public abstract class ActionProvider {
      * A menu item selection is processed in the following order:
      * <ul>
      * <li>
-     * Receiving a call to {@link MenuItem.OnMenuItemClickListener#onMenuItemClick
-     * MenuItem.OnMenuItemClickListener.onMenuItemClick}.
+     * Receiving a call to {@link com.actionbarsherlock.view.MenuItem.OnMenuItemClickListener#onMenuItemClick
+     *  MenuItem.OnMenuItemClickListener.onMenuItemClick}.
      * </li>
      * <li>
-     * Receiving a call to {@link android.app.Activity#onOptionsItemSelected(MenuItem)
-     * Activity.onOptionsItemSelected(MenuItem)}
+     * Receiving a call to {@link android.app.Activity#onOptionsItemSelected(com.actionbarsherlock.view.MenuItem)
+     *  Activity.onOptionsItemSelected(MenuItem)}
      * </li>
      * <li>
-     * Receiving a call to {@link android.app.Fragment#onOptionsItemSelected(MenuItem)
-     * Fragment.onOptionsItemSelected(MenuItem)}
+     * Receiving a call to {@link android.app.Fragment#onOptionsItemSelected(com.actionbarsherlock.view.MenuItem)
+     *  Fragment.onOptionsItemSelected(MenuItem)}
      * </li>
      * <li>
      * Launching the {@link android.content.Intent} set via
-     * {@link MenuItem#setIntent(android.content.Intent) MenuItem.setIntent(android.content.Intent)}
+     * {@link com.actionbarsherlock.view.MenuItem#setIntent(android.content.Intent) MenuItem.setIntent(android.content.Intent)}
      * </li>
      * <li>
      * Invoking this method.
@@ -117,9 +117,9 @@ public abstract class ActionProvider {
 
     /**
      * Determines if this ActionProvider has a submenu associated with it.
-     * <p/>
+     *
      * <p>Associated submenus will be shown when an action view is not. This
-     * provider instance will receive a call to {@link #onPrepareSubMenu(SubMenu)}
+     * provider instance will receive a call to {@link #onPrepareSubMenu(com.actionbarsherlock.view.SubMenu)}
      * after the call to {@link #onPerformDefaultAction()} and before a submenu is
      * displayed to the user.
      *
@@ -131,7 +131,7 @@ public abstract class ActionProvider {
 
     /**
      * Called to prepare an associated submenu for the menu item backed by this ActionProvider.
-     * <p/>
+     *
      * <p>if {@link #hasSubMenu()} returns true, this method will be called when the
      * menu item is selected to prepare the submenu for presentation to the user. Apps
      * may use this to create or alter submenu content right before display.

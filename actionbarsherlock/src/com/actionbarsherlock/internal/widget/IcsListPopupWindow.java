@@ -36,7 +36,7 @@ public class IcsListPopupWindow {
     private static final int EXPAND_LIST_TIMEOUT = 250;
 
     private Context mContext;
-    private PopupWindow mPopup;
+    private final PopupWindowCompat mPopup;
     private ListAdapter mAdapter;
     private DropDownListView mDropDownList;
 
@@ -80,7 +80,7 @@ public class IcsListPopupWindow {
 
     public IcsListPopupWindow(Context context, AttributeSet attrs, int defStyleAttr) {
         mContext = context;
-        mPopup = new PopupWindow(context, attrs, defStyleAttr);
+        mPopup = new PopupWindowCompat(context, attrs, defStyleAttr);
         mPopup.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
     }
 
@@ -88,9 +88,9 @@ public class IcsListPopupWindow {
         mContext = context;
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
             Context wrapped = new ContextThemeWrapper(context, defStyleRes);
-            mPopup = new PopupWindow(wrapped, attrs, defStyleAttr);
+            mPopup = new PopupWindowCompat(wrapped, attrs, defStyleAttr);
         } else {
-            mPopup = new PopupWindow(context, attrs, defStyleAttr, defStyleRes);
+            mPopup = new PopupWindowCompat(context, attrs, defStyleAttr, defStyleRes);
         }
         mPopup.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
     }
@@ -314,7 +314,7 @@ public class IcsListPopupWindow {
             mDropDownList.setFocusableInTouchMode(true);
             mDropDownList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 public void onItemSelected(AdapterView<?> parent, View view,
-                                           int position, long id) {
+                        int position, long id) {
 
                     if (position != -1) {
                         DropDownListView dropDownList = mDropDownList;
@@ -348,18 +348,18 @@ public class IcsListPopupWindow {
                 );
 
                 switch (mPromptPosition) {
-                    case POSITION_PROMPT_BELOW:
-                        hintContainer.addView(dropDownView, hintParams);
-                        hintContainer.addView(hintView);
-                        break;
+                case POSITION_PROMPT_BELOW:
+                    hintContainer.addView(dropDownView, hintParams);
+                    hintContainer.addView(hintView);
+                    break;
 
-                    case POSITION_PROMPT_ABOVE:
-                        hintContainer.addView(hintView);
-                        hintContainer.addView(dropDownView, hintParams);
-                        break;
+                case POSITION_PROMPT_ABOVE:
+                    hintContainer.addView(hintView);
+                    hintContainer.addView(dropDownView, hintParams);
+                    break;
 
-                    default:
-                        break;
+                default:
+                    break;
                 }
 
                 // measure the hint's height to find how much more vertical space
@@ -447,7 +447,7 @@ public class IcsListPopupWindow {
     }
 
     private int measureHeightOfChildren(int widthMeasureSpec, int startPosition, int endPosition,
-                                        final int maxHeight, int disallowPartialChildPosition) {
+            final int maxHeight, int disallowPartialChildPosition) {
 
         final ListAdapter adapter = mAdapter;
         if (adapter == null) {
@@ -485,9 +485,9 @@ public class IcsListPopupWindow {
                 // We went over, figure out which height to return.  If returnedHeight > maxHeight,
                 // then the i'th position did not fit completely.
                 return (disallowPartialChildPosition >= 0) // Disallowing is enabled (> -1)
-                        && (i > disallowPartialChildPosition) // We've past the min pos
-                        && (prevHeightWithoutPartialChild > 0) // We have a prev height
-                        && (returnedHeight != maxHeight) // i'th child did not fit completely
+                            && (i > disallowPartialChildPosition) // We've past the min pos
+                            && (prevHeightWithoutPartialChild > 0) // We have a prev height
+                            && (returnedHeight != maxHeight) // i'th child did not fit completely
                         ? prevHeightWithoutPartialChild
                         : maxHeight;
             }
@@ -501,7 +501,6 @@ public class IcsListPopupWindow {
         // completely fit, so return the returnedHeight
         return returnedHeight;
     }
-
     private void measureScrapChild(View child, int position, int widthMeasureSpec) {
         ListView.LayoutParams p = (ListView.LayoutParams) child.getLayoutParams();
         if (p == null) {
@@ -647,7 +646,7 @@ public class IcsListPopupWindow {
 
     private class PopupScrollListener implements ListView.OnScrollListener {
         public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
-                             int totalItemCount) {
+                int totalItemCount) {
 
         }
 

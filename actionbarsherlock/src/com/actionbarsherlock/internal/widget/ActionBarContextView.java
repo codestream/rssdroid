@@ -203,7 +203,7 @@ public class ActionBarContextView extends AbsActionBarView implements AnimatorLi
     public void initForMode(final ActionMode mode) {
         if (mClose == null) {
             LayoutInflater inflater = LayoutInflater.from(mContext);
-            mClose = (NineLinearLayout) inflater.inflate(R.layout.abs__action_mode_close_item, this, false);
+            mClose = (NineLinearLayout)inflater.inflate(R.layout.abs__action_mode_close_item, this, false);
             addView(mClose);
         } else if (mClose.getParent() == null) {
             addView(mClose);
@@ -308,14 +308,14 @@ public class ActionBarContextView extends AbsActionBarView implements AnimatorLi
     }
 
     @Override
-    protected ViewGroup.LayoutParams generateDefaultLayoutParams() {
+    protected LayoutParams generateDefaultLayoutParams() {
         // Used by custom views if they don't supply layout params. Everything else
         // added to an ActionBarContextView should have them already.
         return new MarginLayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
     }
 
     @Override
-    public ViewGroup.LayoutParams generateLayoutParams(AttributeSet attrs) {
+    public LayoutParams generateLayoutParams(AttributeSet attrs) {
         return new MarginLayoutParams(getContext(), attrs);
     }
 
@@ -359,7 +359,7 @@ public class ActionBarContextView extends AbsActionBarView implements AnimatorLi
         }
 
         if (mCustomView != null) {
-            ViewGroup.LayoutParams lp = mCustomView.getLayoutParams();
+            LayoutParams lp = mCustomView.getLayoutParams();
             final int customWidthMode = lp.width != LayoutParams.WRAP_CONTENT ?
                     MeasureSpec.EXACTLY : MeasureSpec.AT_MOST;
             final int customWidth = lp.width >= 0 ?
