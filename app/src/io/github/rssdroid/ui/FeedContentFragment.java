@@ -47,7 +47,11 @@ public class FeedContentFragment extends Fragment {
         super.onAttach(activity);
         Intent intent = activity.getIntent();
         Bundle bundle = intent.getExtras();
-        mFeedUrl = bundle.getString(getString(R.string.text_bundle_feed_url_dialog));
+        if(bundle != null){
+            mFeedUrl = bundle.getString(getString(R.string.text_bundle_feed_url_dialog));
+        } else {
+            mFeedUrl = "";
+        }
     }
 
     @Override
