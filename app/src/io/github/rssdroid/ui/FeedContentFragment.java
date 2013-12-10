@@ -3,6 +3,7 @@ package io.github.rssdroid.ui;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -44,21 +45,9 @@ public class FeedContentFragment extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        //тут тоже убрать костыли
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        mFeedUrl = preferences.getString(getString(R.string.text_bundle_feed_url_dialog), null);
-        if(TextUtils.isEmpty(mFeedUrl)){
-            mFeedUrl = "http://dou.ua/forums/feed";
-        }
-        /*Bundle bundle = getArguments();
-        if(bundle == null){
-            mFeedUrl = "http://dou.ua/forums/feed";
-        } else {
-            mFeedUrl = bundle.getString(getString(R.string.bundle_key_url_string));
-            if(TextUtils.isEmpty(mFeedUrl)){
-                mFeedUrl = bundle.getString(getString(R.string.text_bundle_feed_url_dialog));
-            }
-        }*/
+        Intent intent = activity.getIntent();
+        Bundle bundle = intent.getExtras();
+        mFeedUrl = bundle.getString(getString(R.string.text_bundle_feed_url_dialog));
     }
 
     @Override

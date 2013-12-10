@@ -74,11 +74,9 @@ public class AddFeedDialog extends DialogFragment {
                             holder.feedDescriptionField.getText().toString());
                     dismiss();
                     Intent intent = new Intent(getActivity(), FeedActivity.class);
-                    //убрать костыли
-                    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                    SharedPreferences.Editor editor = prefs.edit();
-                    editor.putString(getString(R.string.text_bundle_feed_url_dialog), holder.feedUrlField.getText().toString());
-                    editor.commit();
+                    Bundle bundle = new Bundle();
+                    bundle.putString(getString(R.string.text_bundle_feed_url_dialog), holder.feedUrlField.getText().toString());
+                    intent.putExtras(bundle);
                     startActivity(intent);
                 }
             }
