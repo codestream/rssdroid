@@ -1,9 +1,11 @@
 package io.github.rssdroid.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.*;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 import com.actionbarsherlock.app.ActionBar;
@@ -19,6 +21,8 @@ import java.util.ArrayList;
 public class FeedActivity extends SherlockFragmentActivity {
     private ViewPager mViewPager;
     private TabsAdapter mTabsAdapter;
+    private Intent intent;
+    private Bundle bundle;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,8 +35,14 @@ public class FeedActivity extends SherlockFragmentActivity {
         actionBar.show();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         mTabsAdapter = new TabsAdapter(this, mViewPager);
-        mTabsAdapter.addTab(actionBar.newTab().setText("Your feeds"), FeedListFragment.class, null);
-        mTabsAdapter.addTab(actionBar.newTab().setText("Feed content"), FeedContentFragment.class, null);
+        Bundle bundle = getIntent().getExtras();
+        if(bundle == null){
+            mTabsAdapter.addTab(actionBar.newTab().setText("Your feeds"), FeedListFragment.class, null);
+            mTabsAdapter.addTab(actionBar.newTab().setText("Feed content"), FeedContentFragment.class, null);
+        }  else if(!TextUtils.isEmpty(bundle.getString(getString(R.string.text_bundle_feed_url_dialog)))){
+            mTabsAdapter.addTab(actionBar.newTab().setText("Feed content"), FeedContentFragment.class, null);
+            mTabsAdapter.addTab(actionBar.newTab().setText("Your feeds"), FeedListFragment.class, null);
+        }
     }
 
     @Override
