@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">RSSDroid</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string-array name="nav_drawer_items">
+        <item >Add new feed</item>
+        <item >Your feeds</item>
+        <item >Delete feed</item>
+        <item >Preferences</item>
+        <item >Share your feeds</item>
+    </string-array>
+    <string name="text_cancel">Cancel</string>
+    <string name="hint_add_new_feed">Add new feed</string>
+    <string name="text_hint_feed_url">Feed url</string>
+    <string name="text_hint_feed_description">Description</string>
+    <string name="text_add_dialog_title">Add feed</string>
+    <string name="text_toast_empty_feed_url">Feed url can\'t be empty</string>
+    <string name="text_toast_empty_feed_description">Feed description can\'t be empty</string>
+    <string name="toast_malformed_url">Invalid url format</string>
+    <string name="text_bundle_feed_url_dialog">FEED_URL_FROM_DIALOG</string>
+    <string name="text_not_implemented_yet">Not implemented yet</string>
+    <string name="text_label_my_feeds">Your feed list</string>
+    <string name="text_pd_addition">Please wait...</string>
+    <string name="text_bundle_feed_url">FEED_URL_ITEM</string>
+</resources>

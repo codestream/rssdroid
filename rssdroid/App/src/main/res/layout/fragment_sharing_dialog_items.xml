@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/facebook_option"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="New text"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+    <TextView
+        android:id="@+id/twitter_option"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="New text"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+    <TextView
+        android:id="@+id/gplus_option"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="New text"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+    <TextView
+        android:id="@+id/option_cancel"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="New text"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+</LinearLayout>
