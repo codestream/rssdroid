@@ -1,6 +1,7 @@
 package io.github.rssdroid.ui.feed;
 
 import android.content.Context;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,8 +38,8 @@ public class FeedContentAdapter extends ArrayAdapter {
             String feedTitle = rssItems.get(position).getTitle();
             String feedDescription = rssItems.get(position).getDescription();
 
-            viewHolder.mTitle.setText(feedTitle);
-            viewHolder.mDescription.setText(feedDescription);
+            viewHolder.mTitle.setText(Html.fromHtml(feedTitle));
+            viewHolder.mDescription.setText(Html.fromHtml(feedDescription));
         }
 
         return view;
